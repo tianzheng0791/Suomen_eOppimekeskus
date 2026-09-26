@@ -109,7 +109,8 @@ def _get_domain(url):
 
 def is_blocked_domain(url):
     domain = _get_domain(url)
-    return any(blocked in domain for blocked in BLOCKED_DOMAINS)
+    return any(domain == blocked or domain.endswith("." + blocked)
+           for blocked in BLOCKED_DOMAINS)
 
 
 def is_preferred_domain(url):
